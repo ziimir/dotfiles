@@ -1,0 +1,22 @@
+---
+# tasks file for roles/tui
+- name: has editorconfig config
+  copy:
+    src: editorconfig
+    dest: ~/.editorconfig
+
+- name: has bat
+  homebrew:
+    name: bat
+
+- name: has the_silver_searcher
+  homebrew:
+    name: the_silver_searcher
+
+- name: has nnn
+  homebrew:
+    name: nnn
+
+- import_tasks: tmux.yml
+- import_tasks: fzf.yml
+- import_tasks: neovim.yml

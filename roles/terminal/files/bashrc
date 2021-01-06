@@ -1,0 +1,148 @@
+[ -f ~/.bash_completion ] && source ~/.bash_completion
+
+# load fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# no ctrl + d
+set -o ignoreeof
+
+# unicode in alacritty https://github.com/tmux/tmux/issues/328
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# man in vim
+export MANPAGER="nvim +set\ filetype=man -"
+
+export EDITOR="/usr/local/bin/nvim"
+
+set_prompt () {
+    white="\e[97m"
+    bg_default="\e[49m"
+
+    cyan="\e[36m"
+    bg_cyan="\e[46m"
+
+    yellow="\e[33m"
+    bg_yellow="\e[43m"
+
+    red="\e[91m"
+    bg_light_red="\e[101m"
+
+    open_separator=$'\ue0b6'
+    separator=$'\ue0d2'
+
+    ps1_user="${yellow}${bg_default}${open_separator}${white}${bg_yellow}\u${bg_cyan}${yellow}${separator}"
+    ps1_work_dir="${white}${bg_cyan}\W"
+
+    git_sybmol=$'\ue0a0'
+
+    PS1="${ps1_user}${ps1_work_dir}"
+
+    if [ -n "$LF_LEVEL" ]; then
+        PS1='[LF]'"$PS1"
+    fi
+
+    if [ -f ~/.bash_completion.d/git-prompt.sh ]; then
+        export GIT_PS1_SHOWDIRTYSTATE=1
+
+        git_status_left=${cyan}${bg_light_red}${separator}${white}${git_sybmol}
+        git_status_right=${red}${bg_default}${separator}
+        PS1+="$(__git_ps1 "$git_status_left%s$git_status_right")"
+    fi
+
+    if [ -z $(git rev-parse --git-dir 2> /dev/null) ]; then
+        PS1+="${cyan}${bg_default}${separator}"
+    fi
+
+    PS1+="${bg_default}${white}\n$ "
+}
+PROMPT_COMMAND='set_prompt'
+
+#FZF tmux
+ts() { # create or switch session
+  [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+  if [ $1 ]; then
+    tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+  fi
+  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+}
+
+tk() { # kill session
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf --query="$1" --select-1 --exit-0) &&
+  tmux kill-session -t "$session"
+}
+
+#FZF git
+__is_in_git_repo__() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+gb() {
+  __is_in_git_repo__ || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf --height 50% "$@" --border -down --ansi --multi --tac |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+gf() {
+  __is_in_git_repo__ || return
+  git -c color.status=always status --short |
+  fzf -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //'
+}
+
+#FZF npm scripts
+npm_scripts() {
+  local declare npm_scripts=$(npm run | grep -v '^\w' | grep -v '^$' | sed 's/^[ ]*//' | paste -d! - -)
+
+  echo "$npm_scripts" | cut -d! -f1 | fzf \
+    --preview-window wrap \
+    --preview "echo \"${npm_scripts}\" | grep {1}! | cut -d! -f2"
+}
+
+#FZF key bindings
+bind '"\er": redraw-current-line'
+bind '"\C-gb": "$(gb)\e\C-e\er"'
+bind '"\C-gf": "$(gf)\e\C-e\er"'
+bind '"\C-ns": "$(npm_scripts)\e\C-e\er"'
+
+alias tig='tig --all'
+alias vim='nvim'
+
+#nnn cd on quit
+nn ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}

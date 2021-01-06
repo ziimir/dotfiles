@@ -1,0 +1,344 @@
+" ====================> js syntax setup
+let g:polyglot_disabled = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
+" set jsx as typescriptreact
+autocmd BufRead,BufNewFile *.jsx set filetype=typescriptreact
+
+" ====================> css syntax setup
+autocmd BufRead,BufNewFile *.css set filetype=scss.css
+
+set nocompatible
+filetype off
+
+call plug#begin('~/.local/share/nvim/plugged')
+
+" ui
+Plug 'junegunn/seoul256.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-sensible'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'inside/vim-textobj-jsxattr'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'simeji/winresizer'
+"Plug 'osyo-manga/vim-anzu'
+Plug 'junegunn/vim-slash'
+Plug 'yssl/QFEnter'
+Plug 'drmingdrmer/vim-toggle-quickfix'
+Plug 'TaDaa/vimade'
+
+" git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
+" common
+Plug 'editorconfig/editorconfig-vim'
+Plug 'djoshea/vim-autoread'
+Plug 'svermeulen/vim-easyclip'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Yggdroot/indentLine'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+
+Plug 'tpope/vim-obsession'
+Plug 'cohama/lexima.vim'
+"Plug 'https://github.com/jiangmiao/auto-pairs.git'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'AndrewRadev/linediff.vim'
+
+" syntax
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'sheerun/vim-polyglot'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+
+" code helpers
+"Plug 'liuchengxu/vista.vim'
+Plug 'tpope/vim-apathy'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
+Plug 'vim-test/vim-test'
+Plug 'sbdchd/neoformat'
+Plug 'skywind3000/asyncrun.vim'
+
+" autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-spell-checker', 'coc-react-refactor']
+Plug 'antoinemadec/coc-fzf'
+Plug 'SirVer/ultisnips'
+
+" snippets
+Plug 'mattn/emmet-vim'
+
+" linting
+Plug 'dense-analysis/ale'
+
+call plug#end()
+
+filetype plugin indent on
+
+set clipboard=unnamedplus
+set ignorecase
+set hlsearch
+set autoindent
+set history=500
+set ruler
+set number
+set relativenumber
+set showcmd
+set cursorline
+set nowrap
+set diffopt+=vertical
+set noshowmode
+set hidden " allow buffer switching without saving
+
+" no backup
+set nobackup
+set nowb
+set noswapfile
+
+" use original cursor in nvim
+set guicursor=
+
+" leader button
+let mapleader=","
+
+" clear status
+nmap <leader><esc> :noh<CR>
+
+" tab navigation
+map <C-l> gt
+map <C-h> gT
+map <C-k> :tabm +1<CR>
+map <C-j> :tabm -1<CR>
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+" beautify json
+command! -nargs=0 BeautifyJson %!python -m json.tool
+
+" beautify xml
+command! -nargs=0 BeautifyXml %!xmllint --format %
+
+" editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+"
+set list
+set listchars=tab:▸\ ,eol:¬,trail:•
+highlight SpecialKey ctermfg=NONE guifg=NONE
+
+" ====================> colorscheme setup
+if exists('+termguicolors')
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+
+    set termguicolors
+endif
+
+set background=light
+colorscheme seoul256-light
+highlight NERDTreeFile ctermfg=251 " fix broken corsorline in nerdtree neovim https://github.com/neovim/neovim/issues/9019
+
+" ====================> asyncrun setup
+let g:asyncrun_open = 19
+
+" ====================> vim-test setup
+let test#strategy = "asyncrun"
+let g:test#javascript#mocha#file_pattern = '\v(tests?/.*|(test))\.(js|jsx|ts|tsx)$'
+let g:test#javascript#jest#file_pattern = '\v(__tests__/.*|(spec|test))\.(js|jsx|ts|tsx)$'
+let g:test#javascript#karma#file_pattern = '\v(test|spec)\.(js|jsx|ts|tsx)$'
+let g:test#javascript#jasmine#file_pattern = '\v^spec/.*spec\.(js|jsx|ts|tsx)$'
+
+" ====================> vimade setup
+let g:vimade = {'groupdiff': 0}
+
+" ====================> fzf setup
+nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>ww :Windows<CR>
+
+nnoremap <Leader>ff :GFiles<CR>
+nnoremap <Leader>f. :GFiles?<CR>
+nnoremap <Leader>fp :call fzf#vim#files('', {'options':'--query '.''.substitute(expand('<cfile>'), '^\.\/', '', '')})<CR>
+
+let g:fzf_preview_window = ['up:50%', 'ctrl-t']
+let g:fzf_layout = {'down': '100%'}
+
+" setting up fzf move preview
+let $FZF_DEFAULT_OPTS="--bind ctrl-d:preview-half-page-down --bind ctrl-u:preview-half-page-up"
+
+" fzf by default use bat if it is available, setting up light theme here
+let $BAT_THEME='GitHub'
+
+" ====================> nerd tree setup
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeWinSize=60
+let NERDTreeAutoDeleteBuffer = 1
+
+nmap <silent> <leader>t :NERDTreeToggle<CR>
+nmap <C-\> :NERDTreeFind<CR>
+
+" ====================> airline setup
+let g:airline_extensions = [
+    \ 'tabline',
+    \ 'quickfix',
+    \ 'fzf',
+    \ 'ale'
+\ ]
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+let g:airline_theme = 'sol'
+let g:airline_symbols.readonly = "\ue0a2"
+let g:airline_section_x = ''
+let g:airline_section_z = airline#section#create([
+    \ '%{ObsessionStatus("\uf03d" . g:airline_symbols.space, "\uf28e" . g:airline_symbols.space)}',
+    \ '%c:%l' . g:airline_symbols.space,
+    \ '%p%%'
+\ ])
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+let airline#extensions#ale#show_line_numbers = 0
+let airline#extensions#ale#error_symbol = "\uf46e" . g:airline_symbols.space
+let airline#extensions#ale#warning_symbol = "\uf071" . g:airline_symbols.space
+
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+
+" ====================> qfenter setup
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.open = ['<CR>']
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
+
+" ====================> vim-toggle-quickfix setup
+nmap <silent> <space>q :call togglequickfix#ToggleQuickfix()<CR>
+
+" ====================> quickfix mappind setup
+nnoremap <silent>]q :cnext<CR>
+nnoremap <silent>[q :cprevious<CR>
+nnoremap <silent>]Q :clast<CR>
+nnoremap <silent>[Q :cfirst<CR>
+
+" ====================> gitgutter setup
+let g:gitgutter_sign_added = "\uf457"
+let g:gitgutter_sign_modified = "\uf459"
+let g:gitgutter_sign_removed = "\uf458"
+let g:gitgutter_sign_removed_first_line = "\uf458"
+let g:gitgutter_sign_modified_removed = "\uf459"
+
+set updatetime=100
+
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+" ====================> fugitive setup
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd BufReadPost /^fugitive://* set bufhidden=delete
+
+" ====================> indentLine setup
+let g:indentLine_char = "\uf6d8"
+
+" ====================> folding setup
+" https://medium.com/vim-drops/javascript-folding-on-vim-119c70d2e872
+set foldmethod=syntax "syntax highlighting items specify folds
+set foldcolumn=0 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
+set foldlevelstart=99 "start file with all folds opened
+
+nmap <BS> zc
+nmap <CR> zo
+
+" ====================> ack setup
+let g:ackprg = 'ag --vimgrep'
+
+cnoreabbrev Ack Ack!
+nmap <Leader>g :Ack<Space>
+nmap <Leader>G :Ack<Space>"\b<cword>\b"<CR>
+
+" ====================> snipets setup
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+let g:UltiSnipsSnippetDirectories = ['~/.snippets']
+
+" ====================> vista setup
+"let g:vista_executive_for = {
+    "\ 'javascript': 'coc',
+    "\ 'typescript': 'coc',
+    "\ 'javascriptreact': 'coc',
+    "\ 'typescriptreact': 'coc'
+    "\ }
+"nnoremap <leader>T :Vista!!<CR>
+
+" ====================> autocompletion setup
+nmap <silent> <space>h :call CocAction('doHover')<CR>
+nmap <silent> <space>d :call CocAction('jumpDefinition', 'edit')<CR>
+nmap <silent> <space>D :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <silent> <space>t :call CocAction('jumpTypeDefinition', 'edit')<CR>
+nmap <silent> <space>T :call CocAction('jumpTypeDefinition', 'tab drop')<CR>
+nmap <silent> <space>* <Plug>(coc-references)
+nmap <silent> <space>r <Plug>(coc-rename)
+nmap <silent> <space>R <Plug>(coc-refactor)
+
+nmap <silent> <space>A <Plug>(coc-codeaction)
+nmap <silent> <space>a <Plug>(coc-codeaction-line)
+vmap <silent> <space>a <Plug>(coc-codeaction-selected)
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+
+inoremap <silent><expr> <c-l> coc#refresh()
+
+" disable omnicompletion status messages (e.g. Pattern not found) https://stackoverflow.com/questions/14716756/vim-disable-omnicompletion-status-messages-e-g-pattern-not-found
+setlocal shortmess+=c
+
+" ====================> linting
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+
+let g:ale_hover_cursor = 0
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint', 'tsserver']
+\}
+
+nmap <silent> <space>l <Plug>(ale_detail)
+nmap <silent> <space>L <Plug>(ale_lint)
+nmap ]l <Plug>(ale_next)
+nmap [l <Plug>(ale_previous)
+
+" ====================> copy path
+" inspired by https://github.com/vim-scripts/copypath.vim
+
+function CopyPath()
+    let @*=expand('%:r')
+endfunction
+
+function CopyFileName()
+    let @*=expand('%:t:r')
+endfunction
+
+command! -nargs=0 CopyPath     call CopyPath()
+command! -nargs=0 CopyFileName call CopyFileName()

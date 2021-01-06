@@ -1,0 +1,24 @@
+---
+# tasks file for roles/terminal
+
+# https://github.com/ansible-collections/community.general/issues/1524
+- name: has alacirtty config
+  homebrew:
+    install_options: cask
+    name: alacritty
+  failed_when: false
+
+- name: has bash completion directory
+  file:
+    state: directory
+    path: ~/.bash_completion.d
+
+- name: enshure alacirtty config dir
+  file:
+    state: directory
+    path: ~/.config/alacritty
+
+- name: has alacirtty config
+  copy:
+    src: alacritty.yml
+    dest: ~/.config/alacritty/alacritty.yml

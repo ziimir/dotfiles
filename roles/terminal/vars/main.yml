@@ -1,0 +1,4 @@
+---
+# vars file for roles/terminal
+
+brew_bash_executable: '/usr/local/bin/bash'

@@ -1,0 +1,17 @@
+---
+- name: has macos setted up
+  hosts: local
+  vars:
+    node_version: v10.15.3
+  roles:
+    - role: devel
+      vars:
+        git:
+          user: ziimir
+          email: ziimir9@gmail.com
+
+    - role: fonts
+
+    - role: terminal
+
+    - role: tui

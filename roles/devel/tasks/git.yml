@@ -1,0 +1,73 @@
+# tasks file for devel
+- name: has tig installed
+  homebrew:
+    name: tig
+
+- name: has bash completion directory
+  file:
+    state: directory
+    path: ~/.bash_completion.d
+
+- name: has git autocomplete
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+    dest: ~/.bash_completion.d/git-completion.bash
+
+- name: has git prompt
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    dest: ~/.bash_completion.d/git-prompt.sh
+
+- name: has git name configured
+  git_config:
+    scope: global
+    name: user.name
+    value: "{{ git.user }}"
+
+- name: has git email configured
+  git_config:
+    scope: global
+    name: user.email
+    value: "{{ git.email }}"
+
+- name: has git push default configured
+  git_config:
+    scope: global
+    name: push.default
+    value: simple
+
+- name: has git editor configured
+  git_config:
+    scope: global
+    name: core.editor
+    value: /usr/bin/vim
+
+- name: has git alias configured
+  git_config:
+    scope: global
+    name: alias."{{ item.alias }}"
+    value: "{{ item.command }}"
+  with_items:
+    - alias: br
+      command: "branch"
+    - alias: co
+      command: "checkout"
+    - alias: fe
+      command: "fetch -p"
+    - alias: draw
+      command: log
+        --graph
+        --oneline
+        --decorate
+        --all
+        --pretty=format:%cd %C(auto) %h%d %s
+        --date=format:%d-%m-%Y %H:%M:%S
+
+- name: has git scripted alias configured
+  git_config:
+    scope: global
+    name: alias."{{ item.alias }}"
+    value: "!sh -c \"{{ item.command }}\""
+  with_items:
+    - alias: upd
+      command: git stash && git fetch -p $0 && git pull $0 $1 && git stash pop
