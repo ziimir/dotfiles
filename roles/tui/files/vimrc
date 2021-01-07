@@ -320,9 +320,17 @@ let g:ale_lint_on_save = 1
 
 let g:ale_hover_cursor = 0
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint', 'tsserver']
-\}
+    \ 'javascript': ['eslint'],
+    \ 'javascriptreact': ['eslint'],
+    \ 'typescript': ['eslint', 'tsserver'],
+    \ 'typescriptreact': ['eslint', 'tsserver']
+\ }
+let g:ale_fixers = {
+    \ 'javascript': ['eslint'],
+    \ 'javascriptreact': ['eslint'],
+    \ 'typescript': ['eslint'],
+    \ 'typescriptreact': ['eslint']
+\ }
 
 nmap <silent> <space>l <Plug>(ale_detail)
 nmap <silent> <space>L <Plug>(ale_lint)
