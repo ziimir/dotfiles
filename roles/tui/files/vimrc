@@ -1,29 +1,21 @@
-" ====================> js syntax setup
-let g:polyglot_disabled = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
-" set jsx as typescriptreact
-autocmd BufRead,BufNewFile *.jsx set filetype=typescriptreact
-
-" ====================> css syntax setup
-autocmd BufRead,BufNewFile *.css set filetype=scss.css
-
 set nocompatible
 filetype off
 
 call plug#begin('~/.local/share/nvim/plugged')
 
 " ui
+Plug 'sainnhe/edge'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
-Plug 'inside/vim-textobj-jsxattr'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'simeji/winresizer'
-"Plug 'osyo-manga/vim-anzu'
-Plug 'junegunn/vim-slash'
+Plug 'osyo-manga/vim-anzu'
+"Plug 'junegunn/vim-slash'
 Plug 'yssl/QFEnter'
 Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'TaDaa/vimade'
@@ -51,11 +43,10 @@ Plug 'https://github.com/tpope/vim-surround'
 Plug 'AndrewRadev/linediff.vim'
 
 " syntax
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'sheerun/vim-polyglot'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'AndrewRadev/tagalong.vim'
+"Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " code helpers
@@ -64,17 +55,16 @@ Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test'
-Plug 'sbdchd/neoformat'
 Plug 'skywind3000/asyncrun.vim'
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-spell-checker', 'coc-react-refactor']
 Plug 'antoinemadec/coc-fzf'
-Plug 'SirVer/ultisnips'
 
 " snippets
 Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'
 
 " linting
 Plug 'dense-analysis/ale'
@@ -144,8 +134,8 @@ if exists('+termguicolors')
 endif
 
 set background=light
+"colorscheme edge
 colorscheme seoul256-light
-highlight NERDTreeFile ctermfg=251 " fix broken corsorline in nerdtree neovim https://github.com/neovim/neovim/issues/9019
 
 " ====================> asyncrun setup
 let g:asyncrun_open = 19
@@ -255,16 +245,6 @@ autocmd BufReadPost /^fugitive://* set bufhidden=delete
 " ====================> indentLine setup
 let g:indentLine_char = "\uf6d8"
 
-" ====================> folding setup
-" https://medium.com/vim-drops/javascript-folding-on-vim-119c70d2e872
-set foldmethod=syntax "syntax highlighting items specify folds
-set foldcolumn=0 "defines 1 col at window left, to indicate folding
-let javaScript_fold=1 "activate folding by JS syntax
-set foldlevelstart=99 "start file with all folds opened
-
-nmap <BS> zc
-nmap <CR> zo
-
 " ====================> ack setup
 let g:ackprg = 'ag --vimgrep'
 
@@ -301,11 +281,6 @@ nmap <silent> <space>A <Plug>(coc-codeaction)
 nmap <silent> <space>a <Plug>(coc-codeaction-line)
 vmap <silent> <space>a <Plug>(coc-codeaction-selected)
 
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-
 inoremap <silent><expr> <c-l> coc#refresh()
 
 " disable omnicompletion status messages (e.g. Pattern not found) https://stackoverflow.com/questions/14716756/vim-disable-omnicompletion-status-messages-e-g-pattern-not-found
@@ -336,6 +311,57 @@ nmap <silent> <space>l <Plug>(ale_detail)
 nmap <silent> <space>L <Plug>(ale_lint)
 nmap ]l <Plug>(ale_next)
 nmap [l <Plug>(ale_previous)
+
+" ====================> syntax
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = {"typescript", "tsx", "javascript", "css"},
+    highlight = {
+        enable = true
+    },
+    indent = {
+        enable = true
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            scope_incremental = "+",
+            node_incremental = "v",
+            node_decremental = "V"
+        }
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ic"] = "@conditional.inner",
+                ["ac"] = "@conditional.outer",
+                ["il"] = "@loop.inner",
+                ["al"] = "@loop.outer",
+                ["ip"] = "@parameter.inner"
+            }
+        },
+    },
+    autotag = {
+        enable = true
+    }
+}
+EOF
+
+" ====================> css syntax setup
+"autocmd BufRead,BufNewFile *.css set filetype=scss.css
+
+" ====================> folding setup
+set foldlevelstart=99 "start file with all folds opened
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+nmap <BS> zc
+nmap <CR> zo
 
 " ====================> copy path
 " inspired by https://github.com/vim-scripts/copypath.vim
