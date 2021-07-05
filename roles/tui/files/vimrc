@@ -1,3 +1,6 @@
+" ====================> css syntax setup
+autocmd BufRead,BufNewFile *.css set filetype=scss.css
+
 set nocompatible
 filetype off
 
@@ -321,7 +324,7 @@ nmap [l <Plug>(ale_previous)
 " ====================> syntax
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"typescript", "tsx", "javascript", "css"},
+    ensure_installed = {"typescript", "tsx", "javascript", "css", "scss"},
     highlight = {
         enable = true
     },
