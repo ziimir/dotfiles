@@ -90,6 +90,7 @@ set nowrap
 set diffopt+=vertical
 set noshowmode
 set hidden " allow buffer switching without saving
+set conceallevel=0 " always show all syntax symbols
 
 " no backup
 set nobackup
@@ -349,8 +350,6 @@ require'nvim-treesitter.configs'.setup {
                 ["if"] = "@function.inner",
                 ["ic"] = "@conditional.inner",
                 ["ac"] = "@conditional.outer",
-                ["il"] = "@loop.inner",
-                ["al"] = "@loop.outer",
                 ["ip"] = "@parameter.inner"
             }
         },
