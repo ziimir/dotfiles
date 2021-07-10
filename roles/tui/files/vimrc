@@ -1,4 +1,4 @@
-" ====================> css syntax setup
+" ====================> css syntax
 autocmd BufRead,BufNewFile *.css set filetype=scss.css
 
 set nocompatible
@@ -7,7 +7,6 @@ filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 
 " ui
-Plug 'sainnhe/edge'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
@@ -22,6 +21,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'yssl/QFEnter'
 Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'TaDaa/vimade'
+Plug 'AaronLasseigne/yank-code'
 
 " git
 Plug 'airblade/vim-gitgutter'
@@ -34,10 +34,10 @@ Plug 'djoshea/vim-autoread'
 Plug 'svermeulen/vim-easyclip'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Yggdroot/indentLine'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
+Plug 'rhysd/clever-f.vim'
 
 Plug 'tpope/vim-obsession'
 Plug 'cohama/lexima.vim'
@@ -53,7 +53,6 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " code helpers
-"Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
@@ -129,7 +128,7 @@ set list
 set listchars=tab:▸\ ,eol:¬,trail:•
 highlight SpecialKey ctermfg=NONE guifg=NONE
 
-" ====================> colorscheme setup
+" ====================> colorscheme
 if exists('+termguicolors')
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
@@ -138,23 +137,30 @@ if exists('+termguicolors')
 endif
 
 set background=light
-"colorscheme edge
 colorscheme seoul256-light
 
-" ====================> asyncrun setup
+" ====================> asyncrun
 let g:asyncrun_open = 19
 
-" ====================> vim-test setup
+" ====================> splitjoin
+let g:splitjoin_html_attributes_bracket_on_new_line = 0
+let g:splitjoin_curly_brace_padding = 0
+
+" ====================> clever-f
+let g:clever_f_across_no_line = 1
+let g:clever_f_smart_case = 1
+
+" ====================> vim-test
 let test#strategy = "asyncrun"
 let g:test#javascript#mocha#file_pattern = '\v(tests?/.*|(test))\.(js|jsx|ts|tsx)$'
 let g:test#javascript#jest#file_pattern = '\v(__tests__/.*|(spec|test))\.(js|jsx|ts|tsx)$'
 let g:test#javascript#karma#file_pattern = '\v(test|spec)\.(js|jsx|ts|tsx)$'
 let g:test#javascript#jasmine#file_pattern = '\v^spec/.*spec\.(js|jsx|ts|tsx)$'
 
-" ====================> vimade setup
+" ====================> vimade
 let g:vimade = {'groupdiff': 0}
 
-" ====================> fzf setup
+" ====================> fzf
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>ww :Windows<CR>
 
@@ -171,7 +177,7 @@ let $FZF_DEFAULT_OPTS="--bind ctrl-d:preview-half-page-down --bind ctrl-u:previe
 " fzf by default use bat if it is available, setting up light theme here
 let $BAT_THEME='GitHub'
 
-" ====================> nerd tree setup
+" ====================> nerd tree
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeWinSize=60
@@ -180,13 +186,13 @@ let NERDTreeAutoDeleteBuffer = 1
 nmap <silent> <leader>t :NERDTreeToggle<CR>
 nmap <C-\> :NERDTreeFind<CR>
 
-" ====================> anzu setup
+" ====================> anzu
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 
-" ====================> airline setup
+" ====================> airline
 let g:airline_extensions = [
     \ 'tabline',
     \ 'quickfix',
@@ -220,23 +226,23 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 
-" ====================> qfenter setup
+" ====================> qfenter
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.open = ['<CR>']
 let g:qfenter_keymap.vopen = ['<C-v>']
 let g:qfenter_keymap.hopen = ['<C-x>']
 let g:qfenter_keymap.topen = ['<C-t>']
 
-" ====================> vim-toggle-quickfix setup
+" ====================> vim-toggle-quickfix
 nmap <silent> <leader>q :call togglequickfix#ToggleQuickfix()<CR>
 
-" ====================> quickfix mappind setup
+" ====================> quickfix mappind
 nnoremap <silent>]q :cnext<CR>
 nnoremap <silent>[q :cprevious<CR>
 nnoremap <silent>]Q :clast<CR>
 nnoremap <silent>[Q :cfirst<CR>
 
-" ====================> gitgutter setup
+" ====================> gitgutter
 let g:gitgutter_sign_added = "\uf457"
 let g:gitgutter_sign_modified = "\uf459"
 let g:gitgutter_sign_removed = "\uf458"
@@ -248,36 +254,24 @@ set updatetime=100
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 
-" ====================> fugitive setup
+" ====================> fugitive
 autocmd BufReadPost fugitive://* set bufhidden=delete
 autocmd BufReadPost /^fugitive://* set bufhidden=delete
 
-" ====================> indentLine setup
-let g:indentLine_char = "\uf6d8"
-
-" ====================> ack setup
+" ====================> ack
 let g:ackprg = 'ag --vimgrep'
 
 cnoreabbrev Ack Ack!
 nmap <Leader>g :Ack<Space>
 nmap <Leader>G :Ack<Space>"\b<cword>\b"<CR>
 
-" ====================> snippets setup
+" ====================> snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories = ['~/.snippets']
 
-" ====================> vista setup
-"let g:vista_executive_for = {
-    "\ 'javascript': 'coc',
-    "\ 'typescript': 'coc',
-    "\ 'javascriptreact': 'coc',
-    "\ 'typescriptreact': 'coc'
-    "\ }
-"nnoremap <leader>T :Vista!!<CR>
-
-" ====================> autocompletion setup
+" ====================> autocompletion
 nmap <silent> <space>h :call CocAction('doHover')<CR>
 nmap <silent> <space>d :call CocAction('jumpDefinition', 'edit')<CR>
 nmap <silent> <space>D :call CocAction('jumpDefinition', 'tab drop')<CR>
@@ -360,10 +354,7 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" ====================> css syntax setup
-"autocmd BufRead,BufNewFile *.css set filetype=scss.css
-
-" ====================> folding setup
+" ====================> folding
 set foldlevelstart=99 "start file with all folds opened
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
