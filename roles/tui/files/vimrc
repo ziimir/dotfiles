@@ -17,7 +17,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'simeji/winresizer'
 Plug 'osyo-manga/vim-anzu'
-"Plug 'junegunn/vim-slash'
 Plug 'yssl/QFEnter'
 Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'TaDaa/vimade'
@@ -40,9 +39,11 @@ Plug 'mileszs/ack.vim'
 Plug 'rhysd/clever-f.vim'
 
 Plug 'tpope/vim-obsession'
-Plug 'cohama/lexima.vim'
-"Plug 'https://github.com/jiangmiao/auto-pairs.git'
-Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/jiangmiao/auto-pairs.git'
+"Plug 'cohama/lexima.vim'
+"Plug 'windwp/nvim-autopairs'
+"Plug 'https://github.com/tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'AndrewRadev/linediff.vim'
 
 " syntax
@@ -137,8 +138,8 @@ if exists('+termguicolors')
     set termguicolors
 endif
 
+colorscheme seoul256
 set background=light
-colorscheme seoul256-light
 
 " ====================> asyncrun
 let g:asyncrun_open = 19
