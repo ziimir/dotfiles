@@ -164,6 +164,7 @@ let g:vimade = {'groupdiff': 0}
 " ====================> fzf
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>ww :Windows<CR>
+nnoremap <Leader>st :call fzf#sonictemplate#run()<CR>
 
 nnoremap <Leader>ff :GFiles<CR>
 nnoremap <Leader>f. :GFiles?<CR>
