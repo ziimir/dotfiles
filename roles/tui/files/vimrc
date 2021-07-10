@@ -58,6 +58,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'mattn/vim-sonictemplate'
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -264,6 +265,9 @@ let g:ackprg = 'ag --vimgrep'
 cnoreabbrev Ack Ack!
 nmap <Leader>g :Ack<Space>
 nmap <Leader>G :Ack<Space>"\b<cword>\b"<CR>
+
+" ====================> sonic template
+let g:sonictemplate_vim_template_dir = ['~/.vim-templates']
 
 " ====================> snippets
 let g:UltiSnipsExpandTrigger="<tab>"
