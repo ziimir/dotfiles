@@ -6,7 +6,7 @@ import './{{_expr_:expand('%:t:r')}}.css';
 interface Props {
 }
 
-export const {{_expr_:substitute(expand('%:t:r'), '\(\%(\<\l\+\)\%(-\)\@=\)\|-\(\l\)', '\u\1\2', 'g')}}: FC<Props> (props) => {
+export const {{_expr_:substitute(expand('%:t:r'), '\(\%(\<\l\+\)\%(-\)\@=\)\|-\(\l\)', '\u\1\2', 'g')}}: FC<Props> = (props) => {
     const cn = createCn('{{_expr_:expand('%:t:r')}}', props.className);
 
     return (
