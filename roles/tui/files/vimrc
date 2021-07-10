@@ -239,7 +239,7 @@ let g:qfenter_keymap.topen = ['<C-t>']
 " ====================> vim-toggle-quickfix
 nmap <silent> <leader>q :call togglequickfix#ToggleQuickfix()<CR>
 
-" ====================> quickfix mappind
+" ====================> quickfix mapping
 nnoremap <silent>]q :cnext<CR>
 nnoremap <silent>[q :cprevious<CR>
 nnoremap <silent>]Q :clast<CR>
