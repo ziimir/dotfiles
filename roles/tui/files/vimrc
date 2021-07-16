@@ -42,7 +42,6 @@ Plug 'tpope/vim-obsession'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
 "Plug 'cohama/lexima.vim'
 "Plug 'windwp/nvim-autopairs'
-"Plug 'https://github.com/tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
 Plug 'AndrewRadev/linediff.vim'
 
