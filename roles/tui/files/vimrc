@@ -59,6 +59,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mattn/vim-sonictemplate'
+Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -366,6 +367,9 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 nmap <BS> zc
 nmap <CR> zo
+
+" ====================> hexokinase
+let g:Hexokinase_highlighters = ['virtual']
 
 " ====================> copy path
 " inspired by https://github.com/vim-scripts/copypath.vim
