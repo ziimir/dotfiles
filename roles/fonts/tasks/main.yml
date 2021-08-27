@@ -10,3 +10,10 @@
     install_options: cask
     name: font-profont-nerd-font
   failed_when: false
+  
+# https://github.com/ansible-collections/community.general/issues/1524
+- name: has hermit font
+  homebrew:
+    install_options: cask
+    name: font-hurmit-nerd-font
+  failed_when: false
