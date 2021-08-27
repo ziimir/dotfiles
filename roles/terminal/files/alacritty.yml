@@ -13,11 +13,14 @@ scrolling:
 
 font:
   normal:
-    family: ProFontIIx Nerd Font Mono
+    #family: ProFontIIx Nerd Font Mono
+    family: Hurmit Nerd Font
   bold:
-    family: ProFontIIx Nerd Font Mono
+    #family: ProFontIIx Nerd Font Mono
+    family: Hurmit Nerd Font
   italic:
-    family: ProFontIIx Nerd Font Mono
+    #family: ProFontIIx Nerd Font Mono
+    family: Hermit # install standalone hermit font with italic
   size: 20
   offset:
     x: 0
