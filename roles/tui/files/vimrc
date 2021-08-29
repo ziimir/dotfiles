@@ -8,6 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " ui
 Plug 'junegunn/seoul256.vim'
+Plug 'mcchrish/zenbones.nvim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
 Plug 'kana/vim-textobj-user'
@@ -138,6 +139,7 @@ if exists('+termguicolors')
     set termguicolors
 endif
 
+"colorscheme zenbones
 colorscheme seoul256
 set background=light
 
