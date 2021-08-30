@@ -9,7 +9,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " ui
 Plug 'junegunn/seoul256.vim'
 Plug 'mcchrish/zenbones.nvim'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-sensible'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -22,6 +22,7 @@ Plug 'yssl/QFEnter'
 Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'TaDaa/vimade'
 Plug 'AaronLasseigne/yank-code'
+Plug 'voldikss/vim-floaterm'
 
 " git
 Plug 'airblade/vim-gitgutter'
@@ -60,7 +61,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mattn/vim-sonictemplate'
-Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
+"Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
