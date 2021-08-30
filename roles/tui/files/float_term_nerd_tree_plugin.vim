@@ -19,7 +19,7 @@ call NERDTreeAddMenuItem({
     \ })
 
 function! NERDTreeOpenInVifm()
-    let l:node = g:NERDTreeFileNode.GetSelected()
+    let l:node = g:NERDTreeDirNode.GetSelected()
 
     if empty(l:node)
         return
