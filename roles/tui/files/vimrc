@@ -167,6 +167,14 @@ let g:vimade = {'groupdiff': 0}
 
 " ====================> floaterm
 let g:floaterm_autoclose = 1
+nnoremap <silent><leader>T :FloatermNew<CR>
+nnoremap <silent><leader>Tt :FloatermToggle<CR>
+nnoremap <silent><leader>Tk :FloatermKill<CR>
+tnoremap <silent><leader>Tt <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent><leader>Tk <C-\><C-n>:FloatermKill<CR>
+
+hi Floaterm guibg=black
+hi Floaterm guifg=white
 
 " ====================> fzf
 nnoremap <Leader>bb :Buffers<CR>
