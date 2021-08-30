@@ -167,11 +167,11 @@ let g:vimade = {'groupdiff': 0}
 
 " ====================> floaterm
 let g:floaterm_autoclose = 1
-nnoremap <silent><leader>T :FloatermNew<CR>
-nnoremap <silent><leader>Tt :FloatermToggle<CR>
-nnoremap <silent><leader>Tk :FloatermKill<CR>
-tnoremap <silent><leader>Tt <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent><leader>Tk <C-\><C-n>:FloatermKill<CR>
+nnoremap <silent><leader>tn :FloatermNew<CR>
+nnoremap <silent><leader>tt :FloatermToggle<CR>
+nnoremap <silent><leader>tk :FloatermKill<CR>
+tnoremap <silent><leader>tt <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent><leader>tk <C-\><C-n>:FloatermKill<CR>
 
 hi Floaterm guibg=black
 hi Floaterm guifg=white
@@ -200,7 +200,7 @@ let NERDTreeShowHidden=1
 let NERDTreeWinSize=60
 let NERDTreeAutoDeleteBuffer = 1
 
-nmap <silent> <leader>t :NERDTreeToggle<CR>
+nmap <C-t> :NERDTreeToggle<CR>
 nmap <C-\> :NERDTreeFind<CR>
 
 " ====================> anzu
