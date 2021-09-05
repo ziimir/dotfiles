@@ -171,13 +171,13 @@ let g:floaterm_width=0.9
 let g:floaterm_height=0.9
 let g:floaterm_position='center'
 
-nnoremap <silent><Leader>tn :FloatermNew<CR>
-nnoremap <silent><Leader>tt :FloatermToggle<CR>
-nnoremap <silent><Leader>tq :FloatermKill<CR>
-tnoremap <silent><Leader>tt <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent><Leader>tq <C-\><C-n>:FloatermKill<CR>
-tnoremap <silent><Leader>t[ <C-\><C-n>:FloatermPrev<CR>
-tnoremap <silent><Leader>t] <C-\><C-n>:FloatermNext<CR>
+nnoremap <silent><c-s>n :FloatermNew<CR>
+nnoremap <silent><c-s>s :FloatermToggle<CR>
+nnoremap <silent><c-s>q :FloatermKill<CR>
+tnoremap <silent><c-s>s <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent><c-s>q <C-\><C-n>:FloatermKill<CR>
+tnoremap <silent><c-s>[ <C-\><C-n>:FloatermPrev<CR>
+tnoremap <silent><c-s>] <C-\><C-n>:FloatermNext<CR>
 
 hi Floaterm guibg=black
 hi Floaterm guifg=white
