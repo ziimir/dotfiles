@@ -43,8 +43,10 @@ set_prompt () {
 
     PS1="${ps1_user}${ps1_work_dir}"
 
-    if [ -n "$LF_LEVEL" ]; then
-        PS1='[LF]'"$PS1"
+    if [ -n "$INSIDE_VIFM" ]; then
+        fm_separator_open=$'\ue0ba'
+        fm_separator_close=$'\ue0bc'
+        PS1="${red}${bg_default}${fm_separator_open}${white}${bg_light_red} VIFM ${red}${bg_default}${fm_separator_close} $PS1"
     fi
 
     if [ -f ~/.bash_completion.d/git-prompt.sh ]; then
