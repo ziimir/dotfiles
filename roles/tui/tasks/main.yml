@@ -13,9 +13,9 @@
   homebrew:
     name: the_silver_searcher
 
-- name: has nnn
+- name: has vifm
   homebrew:
-    name: nnn
+    name: vifm
 
 - import_tasks: tmux.yml
 - import_tasks: fzf.yml
