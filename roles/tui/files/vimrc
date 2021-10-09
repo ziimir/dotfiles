@@ -53,6 +53,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'liuchengxu/vista.vim'
 
 " code helpers
 Plug 'tpope/vim-apathy'
@@ -62,6 +63,7 @@ Plug 'vim-test/vim-test'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mattn/vim-sonictemplate'
 "Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
+Plug 'neovimhaskell/haskell-vim'
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -140,9 +142,9 @@ if exists('+termguicolors')
     set termguicolors
 endif
 
-"colorscheme zenbones
-colorscheme seoul256
-set background=light
+colorscheme zenbones
+"colorscheme seoul256
+"set background=light
 
 " ====================> asyncrun
 let g:asyncrun_open = 19
@@ -315,6 +317,18 @@ inoremap <silent><expr> <c-l> coc#refresh()
 
 " disable omnicompletion status messages (e.g. Pattern not found) https://stackoverflow.com/questions/14716756/vim-disable-omnicompletion-status-messages-e-g-pattern-not-found
 setlocal shortmess+=c
+
+" ====================> Vista
+let g:vista_executive_for = {
+  \ 'javascript': 'coc',
+  \ 'javascriptreact': 'coc',
+  \ 'typescript': 'coc',
+  \ 'typescriptreact': 'coc',
+  \ 'haskell': 'coc',
+  \ }
+
+nmap <leader>T :Vista!!<CR>
+nmap <leader>ft :Vista finder<CR>
 
 " ====================> linting
 let g:ale_lint_on_text_changed = 0
