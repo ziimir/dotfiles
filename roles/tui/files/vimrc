@@ -7,6 +7,7 @@ filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 
 " ui
+Plug 'rktjmp/lush.nvim'
 Plug 'junegunn/seoul256.vim'
 Plug 'mcchrish/zenbones.nvim'
 Plug 'preservim/nerdtree'
