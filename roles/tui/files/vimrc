@@ -149,6 +149,7 @@ colorscheme zenbones
 "set background=light
 
 " ====================> highlightedyank
+let g:highlightedyank_highlight_duration = 300
 highlight HighlightedyankRegion guibg=#D2DFE7
 
 " ====================> asyncrun
