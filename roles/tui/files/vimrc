@@ -52,7 +52,7 @@ Plug 'AndrewRadev/linediff.vim'
 " syntax
 "Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
 Plug 'windwp/nvim-ts-autotag'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'liuchengxu/vista.vim'
@@ -90,7 +90,7 @@ set autoindent
 set history=500
 set ruler
 set number
-set relativenumber
+"set relativenumber
 set showcmd
 set cursorline
 set nowrap
@@ -388,8 +388,6 @@ require'nvim-treesitter.configs'.setup {
             keymaps = {
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
-                ["ic"] = "@conditional.inner",
-                ["ac"] = "@conditional.outer",
                 ["ip"] = "@parameter.inner"
             }
         },
