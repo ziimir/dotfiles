@@ -56,6 +56,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
 Plug 'windwp/nvim-ts-autotag'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'liuchengxu/vista.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " code helpers
 Plug 'tpope/vim-apathy'
