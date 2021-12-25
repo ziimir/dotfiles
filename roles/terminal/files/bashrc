@@ -16,7 +16,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # man in vim
-export MANPAGER="nvim +set\ filetype=man -"
+export MANPAGER="nvim +Man!"
 
 export EDITOR="/usr/local/bin/nvim"
 
