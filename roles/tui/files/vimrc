@@ -52,7 +52,7 @@ Plug 'AndrewRadev/linediff.vim'
 " syntax
 "Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'liuchengxu/vista.vim'
@@ -146,8 +146,8 @@ if exists('+termguicolors')
 endif
 
 colorscheme zenbones
+set background=light
 "colorscheme seoul256
-"set background=light
 
 " ====================> highlightedyank
 let g:highlightedyank_highlight_duration = 300
