@@ -41,6 +41,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'rhysd/clever-f.vim'
+Plug 'sbdchd/neoformat'
 
 Plug 'tpope/vim-obsession'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
