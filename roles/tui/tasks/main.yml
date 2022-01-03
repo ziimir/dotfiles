@@ -4,6 +4,10 @@
   copy:
     src: editorconfig
     dest: ~/.editorconfig
+    
+- name: has jq
+  homebrew:
+    name: jq
 
 - name: has bat
   homebrew:
