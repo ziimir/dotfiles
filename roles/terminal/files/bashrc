@@ -113,7 +113,9 @@ npm_scripts() {
 
 #FZF Makefile PHONY
 makefile_phony() {
-    echo "$(grep .PHONY Makefile | cut -d ' ' -f2 | fzf)"
+    echo "$(grep .PHONY Makefile | cut -d ' ' -f2)" | fzf \
+        --preview-window wrap \
+        --preview "cat Makefile | sed -n '/^\.PHONY: {1}$/,/^$/p'"
 }
 
 #FZF key bindings
