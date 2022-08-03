@@ -21,7 +21,7 @@ export MANPAGER="nvim +Man!"
 export EDITOR="/usr/local/bin/nvim"
 
 set_prompt () {
-    white="\e[97m"
+    white="\e[39m"
     bg_default="\e[49m"
 
     cyan="\e[36m"
