@@ -1,7 +1,5 @@
-Maintain ansible script up to date is kinda tedious
-
-So here all apps I need to install
-
+Maintain ansible script up to date is kinda tedious \
+So here all apps I need to install \
 Dotfiles are handled by chezmoi and stored here: https://github.com/ziimir/dot_files
 
 via script:
@@ -21,8 +19,8 @@ Howebrew:
 - fonts
 
 Ohmyzhs
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git-prompt
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git-prompt \
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode \
 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
 
 add files:
