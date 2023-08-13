@@ -1,4 +1,0 @@
----
-# tasks file for roles/terminal
-- import_tasks: bash.yml
-- import_tasks: alacritty.yml
