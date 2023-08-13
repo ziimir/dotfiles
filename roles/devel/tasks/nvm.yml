@@ -1,9 +1,0 @@
----
-- name: has nvm
-  shell: >
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-  args:
-    creates: ~/.nvm/nvm.sh
-
-- name: has "{{ node_version }}" node
-  shell: source ~/.nvm/nvm.sh && nvm install "{{ node_version }}"
