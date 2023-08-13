@@ -1,5 +1,0 @@
-@import 'packages/ui/vars.css';
-
-.{{_expr_:expand('%:t:r')}} {
-    {{_cursor_}}
-}
