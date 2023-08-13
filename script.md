@@ -16,7 +16,10 @@ Howebrew:
 - tmux
 - bat
 - chezmoi
-- fonts
+
+FONTS:
+- font-profont-nerd-font
+- font-hurmit-nerd-font
 
 Ohmyzhs
 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git-prompt \
