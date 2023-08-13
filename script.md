@@ -16,15 +16,11 @@ Howebrew:
 - tmux
 - bat
 - chezmoi
+- nerd fonts
 
 FONTS:
 - font-profont-nerd-font
 - font-hurmit-nerd-font
-
-Ohmyzhs
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git-prompt \
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode \
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
 
 add files:
 - Gitconfig
