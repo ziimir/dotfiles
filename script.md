@@ -11,7 +11,7 @@ via script:
 Howebrew:
 - nvim
 - alacritty
-- fzf
+- fzf (+ `$(brew --prefix)/opt/fzf/install --no-bash --no-fish --no-completion`)
 - the_silver_searcher
 - tmux
 - bat
