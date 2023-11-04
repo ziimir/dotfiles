@@ -36,6 +36,6 @@ OTHER APPS:
 - Zoom
 - Dropbox
 - Android file transfer
-- Evernote
+- Notion
 - Calibre
 - VLC
