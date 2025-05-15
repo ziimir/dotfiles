@@ -5,7 +5,6 @@ Dotfiles are handled by chezmoi and stored here: https://github.com/ziimir/dot_f
 via script:
 - homebrew
 - nvm
-- oh my zsh
 - tmux plugin manager
 
 Howebrew:
@@ -36,6 +35,5 @@ OTHER APPS:
 - Zoom
 - Dropbox
 - Android file transfer
-- Notion
 - Calibre
 - VLC
