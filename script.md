@@ -8,12 +8,13 @@ via script:
 - tmux plugin manager
 
 Howebrew:
-- nvim
-- alacritty
+- neovim
+- alacritty (cask)
 - fzf (+ `$(brew --prefix)/opt/fzf/install --no-bash --no-fish --no-completion`)
 - the_silver_searcher
 - tmux
 - bat
+- yazi
 - chezmoi
 - nerd fonts
 
