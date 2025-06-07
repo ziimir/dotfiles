@@ -18,6 +18,10 @@ Howebrew:
 - chezmoi
 - nerd fonts
 
+DEV:
+- just
+- watchexec
+
 FONTS:
 - font-profont-nerd-font
 - font-hurmit-nerd-font
