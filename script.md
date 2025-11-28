@@ -12,9 +12,9 @@ Howebrew:
 - alacritty (cask)
 - fzf (+ `$(brew --prefix)/opt/fzf/install --no-bash --no-fish --no-completion`)
 - the_silver_searcher
+- ripgrep
 - tmux
-- bat
-- yazi
+- lf
 - chezmoi
 - nerd fonts
 
