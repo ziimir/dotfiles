@@ -10,6 +10,7 @@ via script:
 Howebrew:
 - neovim
 - alacritty (cask)
+- ghostty (cask)
 - fzf (+ `$(brew --prefix)/opt/fzf/install --no-bash --no-fish --no-completion`)
 - the_silver_searcher
 - ripgrep
@@ -17,6 +18,7 @@ Howebrew:
 - lf
 - chezmoi
 - nerd fonts
+- chafa
 
 DEV:
 - just
