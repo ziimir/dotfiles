@@ -18,7 +18,8 @@ Howebrew:
 - lf
 - chezmoi
 - nerd fonts
-- chafa
+- chafa // images in terminal
+- ouch // compressing and decompressing for various formats
 
 DEV:
 - just
